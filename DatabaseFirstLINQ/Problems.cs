@@ -21,21 +21,21 @@ namespace DatabaseFirstLINQ { }
             ProblemFour();
             ProblemFive();
             ProblemSix();
-            //ProblemSeven();
-            //ProblemEight();
-            //ProblemNine();
-            //ProblemTen();
-            //ProblemEleven();
-            //ProblemTwelve();
-            //ProblemThirteen();
-            //ProblemFourteen();
-            //ProblemFifteen();
-            //ProblemSixteen();
-            //ProblemSeventeen();
-            //ProblemEighteen();
-            //ProblemNineteen();
-            //ProblemTwenty();
-        }
+            ProblemSeven();
+            ProblemEight();
+            ProblemNine();
+            ProblemTen();
+            ProblemEleven();
+            ProblemTwelve();
+            ProblemThirteen();
+            ProblemFourteen();
+            ProblemFifteen();
+            ProblemSixteen();
+            ProblemSeventeen();
+            ProblemEighteen();
+            ProblemNineteen();
+            ProblemTwenty();
+    }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
         private void ProblemOne()
@@ -153,7 +153,10 @@ namespace DatabaseFirstLINQ { }
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Then print the total of the shopping cart to the console.
 
-        }
+        var users = _context.ShoppingCarts.Include(u => u.User).Include(u => u.Product).Where(u => u.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
+        Console.WriteLine(users);
+
+    }
 
         private void ProblemTen()
         {
