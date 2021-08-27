@@ -1,10 +1,10 @@
-﻿//using System;
-//using System.Linq;
-//using Microsoft.EntityFrameworkCore;
-//using DatabaseFirstLINQ.Models;
+﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using DatabaseFirstLINQ.Models;
 
-namespace DatabaseFirstLINQ
-{
+namespace DatabaseFirstLINQ { }
+
     class Problems
     {
         private ECommerceContext _context;
@@ -17,7 +17,7 @@ namespace DatabaseFirstLINQ
         {
             ProblemOne();
             ProblemTwo();
-            //ProblemThree();
+            ProblemThree();
             //ProblemFour();
             //ProblemFive();
             //ProblemSix();
@@ -64,8 +64,14 @@ namespace DatabaseFirstLINQ
 
         private void ProblemThree()
         {
-            // Write a LINQ query that gets each product where the products price is greater than $150.
-            // Then print the name and price of each product from the above query to the console.
+        // Write a LINQ query that gets each product where the products price is greater than $150.
+        // Then print the name and price of each product from the above query to the console.
+
+         var products = _context.Products.Where(P => P.Price > 150).ToList(); 
+         foreach (Product product in products)
+        {
+            Console.WriteLine(product.Name + " is listed at " + product.Price);
+        }
 
         }
 
@@ -258,4 +264,4 @@ namespace DatabaseFirstLINQ
         }
 
     }
-}
+
