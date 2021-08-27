@@ -23,19 +23,19 @@ namespace DatabaseFirstLINQ { }
             ProblemSix();
             ProblemSeven();
             ProblemEight();
-            ProblemNine();
-            ProblemTen();
-            ProblemEleven();
-            ProblemTwelve();
-            ProblemThirteen();
-            ProblemFourteen();
-            ProblemFifteen();
-            ProblemSixteen();
-            ProblemSeventeen();
-            ProblemEighteen();
-            ProblemNineteen();
-            ProblemTwenty();
-    }
+            //ProblemNine();
+            //ProblemTen();
+            //ProblemEleven();
+            //ProblemTwelve();
+            //ProblemThirteen();
+            //ProblemFourteen();
+            //ProblemFifteen();
+            //ProblemSixteen();
+            //ProblemSeventeen();
+            //ProblemEighteen();
+            //ProblemNineteen();
+            //ProblemTwenty();
+        }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
         private void ProblemOne()
@@ -149,20 +149,23 @@ namespace DatabaseFirstLINQ { }
 
         private void ProblemNine()
         {
-            // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
-            // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
-            // Then print the total of the shopping cart to the console.
-
+        // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
+        // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
+        // Then print the total of the shopping cart to the console.
         var users = _context.ShoppingCarts.Include(u => u.User).Include(u => u.Product).Where(u => u.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
         Console.WriteLine(users);
-
     }
 
         private void ProblemTen()
         {
-            // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
-            // Then print the user's email as well as the product's name, price, and quantity to the console.
-
+        // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
+        // Then print the user's email as well as the product's name, price, and quantity to the console.
+        var CustomerUsers = _context.UserRoles.Where(ur => ur.Role.RoleName == "Employee").Select(ur => ur.User.Id);
+        var EmployeeProducts = _context.ShoppingCarts.Include(sc => sc.User).Include(sc => sc.Product).Where(sc => CustomerUsers.Contains(sc.UserId));
+        foreach (var Employee in EmployeeProducts)
+        {
+            Console.WriteLine($"{Employee.User.Email} {Employee.Product.Name} {Employee.Product.Price} {Employee.Quantity}");
+        }
         }
 
         // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
