@@ -186,9 +186,18 @@ namespace DatabaseFirstLINQ { }
 
         private void ProblemTwelve()
         {
-            // Create a new Product object and add that product to the Products table using LINQ.
+        // Create a new Product object and add that product to the Products table using LINQ.
+        Product newproduct = new Product()
+        {
+            Name = "Playstation 5",
+            Description = "newst top of the line game console of tomorrow",
+                Price = 1500
+        };
+        _context.Products.Add(newproduct);
+        _context.SaveChanges();
 
         }
+
 
         private void ProblemThirteen()
         {
