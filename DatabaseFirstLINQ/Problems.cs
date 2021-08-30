@@ -24,18 +24,18 @@ namespace DatabaseFirstLINQ { }
             ProblemSeven();
             ProblemEight();
             ProblemNine();
-            //ProblemTen();
-            //ProblemEleven();
-            //ProblemTwelve();
-            //ProblemThirteen();
-            //ProblemFourteen();
-            //ProblemFifteen();
-            //ProblemSixteen();
-            //ProblemSeventeen();
-            //ProblemEighteen();
-            //ProblemNineteen();
-            //ProblemTwenty();
-        }
+            ProblemTen();
+            ProblemEleven();
+            ProblemTwelve();
+            ProblemThirteen();
+            ProblemFourteen();
+            ProblemFifteen();
+            ProblemSixteen();
+            ProblemSeventeen();
+            ProblemEighteen();
+            ProblemNineteen();
+            ProblemTwenty();
+    }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
         private void ProblemOne()
@@ -242,7 +242,11 @@ private void ProblemFifteen()
 
         private void ProblemSixteen()
         {
-            // Update the price of the product you created to something different using LINQ.
+        // Update the price of the product you created to something different using LINQ.
+        var product = _context.Products.Where(u => u.Name == "Playstation 5").SingleOrDefault();
+        product.Price = 1400;
+        _context.Products.Update(product);
+        _context.SaveChanges();
 
         }
 
